@@ -1,0 +1,62 @@
+\documentclass[UTF8,a4paper,10pt]{article}
+
+% \begin{equation**}
+%   \begin{aligned}
+%   \end{aligned}
+% \end{equation*}
+
+% \begin{mybox}{}
+% \end{mybox}
+
+
+% \begin{Problem}[]{}
+% \end{Problem}
+
+% \begin{solution}\,
+% \end{solution}
+  
+
+% \begin{enumerate}[label=(\alph*)]
+% \end{enumerate} 
+
+% \setcounter{section}{3} 
+% \setcounter{theorem}{3}
+
+% \begin{theorem}\label{thm:3.4}
+%   If $E = \bigsqcup_{k} E_k$ is a countable union of sets, then $|E|_e \leq \sum_{k} |E_k|_e$.
+%   \end{theorem}
+
+%  \footcite[][42]{Wheeden_Zygmund_2015}
+
+\input{preamble.tex}
+
+\begin{document}
+
+
+
+
+\begin{Problem}[]{The Prékopa-Leindler Inequality}
+  Let $0 < \lambda < 1$ and let $f$, $g$ and $h$ be non-negative integrable functions on $\mathbb{R}^n$ satisfying for every $x, y \in \mathbb{R}^n$, one has
+  $$
+  h\left((1 - \lambda)x + \lambda y\right) \geq f(x)^{1-\lambda} g(y)^\lambda.
+  $$
+  Show that
+  $$
+  \int_{\mathbb{R}^n} h(x) \, dx \geq \left(\int_{\mathbb{R}^n} f(x) \, dx\right)^{1-\lambda} \left(\int_{\mathbb{R}^n} g(x) \, dx\right)^\lambda.
+  $$
+  
+\end{Problem}
+
+
+\pagebreak
+\begin{Problem}[]{The Brunn-Minkowski Inequality}
+
+  Let $0 < \lambda < 1$ and let $A$ and $B$ be non-empty bounded measurable sets in $\mathbb{R}^n$ such that ${(1 - \lambda)A + \lambda B}$ is also measurable. Show that
+$$
+|A + B|^\frac{1}{n} \geq |A|^\frac{1}{n} + |B|^\frac{1}{n}.
+$$
+
+\end{Problem}
+
+
+\end{document}
