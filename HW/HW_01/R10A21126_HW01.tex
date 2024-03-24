@@ -1,0 +1,203 @@
+\documentclass[UTF8,a4paper,10pt]{article}
+
+% \begin{equation**}
+%   \begin{aligned}
+%   \end{aligned}
+% \end{equation*}
+
+% \begin{mybox}{}
+% \end{mybox}
+
+
+% \begin{Problem}[]{}
+% \end{Problem}
+
+% \begin{solution}\,
+% \end{solution}
+  
+
+% \begin{enumerate}[label=(\alph*)]
+% \end{enumerate} 
+
+% \setcounter{section}{3} 
+% \setcounter{theorem}{3}
+
+% \begin{theorem}\label{thm:3.4}
+%   If $E = \bigsqcup_{k} E_k$ is a countable union of sets, then $|E|_e \leq \sum_{k} |E_k|_e$.
+%   \end{theorem}
+
+%  \footcite[][42]{Wheeden_Zygmund_2015}
+
+\input{preamble.tex}
+
+\begin{document}
+
+
+
+
+\begin{Problem}[]{}
+  Define $\log^+(x) = \max \{0, \log(x)\}$. Show that if $\left|f\right| \left(1 + \log^+\left|f\right|\right) \in L^1(E)$ then $f^* \in L^1(E)$, where $E$ is a measurable set with $\left|E\right| < \infty$.
+
+\end{Problem}
+
+
+Define
+\[ d_{f*}(\alpha) = |\{x \in \mathbb{R}^n : |f^*(x)| > \alpha\} |\]
+
+By Fubini's theorem, we know
+\begin{align*}
+    \int_{E} |f^*(x)| \, dx &= \int_{E} \int_0^{|f*(x)|} \, d\alpha \, dx = \int_0^\infty \int_{E} \chi_{\{x \in \mathbb{R}^n : |f^*(x)| > \alpha\}} \, dx \, d\alpha = \int_0^\infty d_{f*}(\alpha) \, d\alpha
+\end{align*}
+
+Hence, for every \( \gamma > 0 \), we have
+\begin{align*}
+    \int_{E} |f^*(x)| \, dx &= \int_0^\gamma d_{f*}(\alpha) \, d\alpha + \int_\gamma^\infty d_{f*}(\alpha) \, d\alpha \\
+    &\leq \gamma |E| + \int_\gamma^\infty d_{f*}(\alpha) \, d\alpha \\
+    &\leq \gamma |E| + \int_\gamma^\infty \frac{c_n}{\alpha}\int_{\mathbb{R}^n} |f(x)|\,dx\, d\alpha \\
+    % &\leq \gamma |E| + c_n \int_{\mathbb{R}^n}  |f(x)| \int_\gamma^\infty  \frac{1}{\alpha} \, d\alpha \,dx\\
+    &\leq \gamma |E| + \int_\gamma^\infty \frac{C_n}{\alpha} \int_{\{x \in \mathbb{R}^n : |f(x)| > \alpha\}} |f(x)| \, dx \, d\alpha \\
+    &\leq \gamma |E| + C_n \int_{\mathbb{R}^n} |f(x)| \int_\gamma^{|f(x)|}\frac{1}{\alpha} \, d\alpha \, dx \\
+    &= \gamma |E| + C_n \int_{\mathbb{R}^n} |f(x)| \left( \log^+ |f(x)| + \log \left( \frac{1}{\gamma} \right) \right) \, dx
+\end{align*}
+
+Let
+\[ \gamma = \frac{1}{e} \]
+Then we obtain
+\[ \int_{E} |f^*(x)| \, dx < \infty \]
+
+
+\pagebreak
+
+\begin{Problem}[]{}
+  Prove that if $f \in L^1(\mathbb{R}^n)$, and $f$ is not identically zero, then there exists some $C > 0$ such that for all $\|x\| \geq 1$,
+
+  $$
+  f^*(x) \geq \frac{C}{\|x\|^n}.
+  $$
+  
+
+\end{Problem}
+
+
+Let $f \neq 0$ on $E$, where $|E| > 0$. 
+
+Let $Q_k(x)$ denote the cube centered at $x$, with edge length $k$.
+
+Let $E_k = E \cap Q_k(0)$, which is measurable. 
+
+Since $E_k \nearrow  E$, by the Monotone Convergence Theorem (MCT) for measure, we have
+\[
+\lim_{k \to \infty} |E_k| = |E| > 0.
+\]
+
+In particular, there exists $K > 0$ such that $|E_K| > 0$.
+
+Thus,
+\[
+b := \int_{Q_K(0)} |f(y)| \, dy \geq \int_{E_K} |f(y)| \, dy > 0,
+\]
+since $|f| > 0$ on $E_K \subseteq E$.
+
+Then,
+
+\begin{align*}
+  f^*(x) &= \sup_{Q} \frac{1}{|Q|} \int_{Q} |f(y)| \, dy \\
+  &\geq \frac{1}{|Q_{K+2\|x\|_\infty}(x)|} \int_{Q_{K+2\|x\|_\infty}(x)} |f(y)| \, dy \\
+  &\geq \frac{1}{(K + 2\|x\|_\infty)^n} \int_{Q_K(0)} |f(y)| \, dy,
+\end{align*}
+
+where $\|x\|_\infty := \max(|x_1|, \ldots, |x_n|)$.
+
+The last inequality follows since $Q_K(0) \subseteq Q_{K+2\|x\|_\infty}(x)$.
+
+Since $\|x\|_\infty \leq |x|$ for all $x \in \mathbb{R}^n$, thus for $|x| \geq 1$,
+\begin{align*}
+  f^*(x) &\geq \frac{b}{(K + 2|x|)^n} \\
+  &\geq \frac{b}{(K|x| + 2|x|)^n} \quad (\text{since } |x| \geq 1) \\
+  &= \frac{b}{(K + 2)^n|x|^n}.
+\end{align*}
+
+
+\pagebreak
+
+\begin{Problem}[]{}
+  Let $A \subseteq [a, b]$ with $|A| > 0$. Show that for every \(n\in \mathbb{N} \), there exists $(x,d) \in A \times\mathbb{R}^{\times}$ such that
+  $$
+  \{x + d, x + 2d, \ldots, a + nd\} \subseteq A
+  .$$
+  
+  
+  
+
+\end{Problem}
+
+
+\textbf{Lebesgue Density Theorem:} Let $A$ be a Lebesgue measurable subset of $\mathbb{R}^n$. Then, almost every point $p$ in $A$ is a point of density of $A$. In other words,
+\[
+\lim_{Q\searrow\, p} \frac{|A \cap Q|}{|Q|} = 1
+,\]
+
+where \(Q\) denotes any cube centered at \(x\).
+
+Let \(S = [p,p+h)\) be the set that shrink to \(p\). For almost every point $p$ in $A$, 
+
+\[
+\lim_{S\searrow\, p} \frac{|A \cap S|}{|S|} = 1
+.\]
+
+That is, for every \( n \in \mathbb{N} \), there exists a density point \( p \in A \) such that
+\[ 1 - \frac{|[p,p+h) \cap A|}{|[p,p+h)|} < \frac{1}{n} ,\]
+i.e.
+\[ \frac{|[p,p+h) \cap A|}{|[p,p+h)|} > \frac{n-1}{n} \]
+for some \( h > 0 \). 
+
+Define
+\[ A_p = [p,p+h) \cap A \subseteq p + \mathbb{R} / h\mathbb{Z} \]
+
+Let
+\[ \pi : p + \mathbb{R} \rightarrow p + \mathbb{R} / h\mathbb{Z} \]
+be the natural projection. Then for every \( 0 \leq k < n \), we know
+\[ |\pi (A_p + \frac{k}{n} \cdot h)| = |\pi(A_p)| = |A_p| > \frac{n - 1}{n} \cdot h \]
+
+In other words, for every \( 0 \leq k < n \), we have
+\[ \left| \pi \left( A_p + \frac{k}{n} \cdot h \right)^C \right| \cap \left( p + \mathbb{R} / h\mathbb{Z} \right) \backslash \pi \left( A_p + \frac{k}{n} \cdot h \right) < \frac{1}{n} \cdot h \]
+
+Hence, we obtain
+\[ \left| \bigcap_{0\leq k < n} \pi \left( A_p + \frac{k}{n} \cdot h \right) \right| = \left| \left( p + \mathbb{R} / h\mathbb{Z} \right) \backslash \bigcup_{0\leq k < n} \pi \left( A_p + \frac{k}{n} \cdot h \right)^C \right| > 0 \]
+
+That is, there exists \( x_0 \in p + \mathbb{R} / h\mathbb{Z} \) such that
+\[ x_0 \in \bigcap_{0\leq k < n} \pi \left( A_p + \frac{k}{n} \cdot h \right) \]
+
+Therefore, for every \( 0 \leq k < n \), we get
+\[ \pi \left( x_0 - \frac{k}{n} \cdot h \right) \in \pi(A_p) \]
+
+Since we know
+\[ \left\{ \pi \left( x_0 - \frac{k}{n} \cdot h \right) \in  p + \mathbb{R} / h\mathbb{Z} : 0 \leq k < n \right\}  \cong \mathbb{Z} / n\mathbb{Z} \]
+
+forms a cyclic subgroup of \( p + \mathbb{R} / h\mathbb{Z} \), it follows that \( A_p \) contains an arithmetic sequence with \( n \) numbers if we order the above elements increasingly.
+
+
+
+\begin{Problem}[]{\textbf{Bonus:}}
+
+ Show that
+$$
+\int_{\mathbb{R}} \Gamma(1 + ix) \, dx = \frac{2\pi}{e}
+$$
+where $\Gamma$ is the Gamma function.
+
+
+\end{Problem}
+
+
+\begin{equation*}
+  \begin{aligned}
+    \Gamma(z) = \int_{0}^{\infty} t^{z-1} e^{-t} dt
+  \end{aligned}
+\end{equation*}
+
+
+Residue theorem
+
+
+\end{document}
