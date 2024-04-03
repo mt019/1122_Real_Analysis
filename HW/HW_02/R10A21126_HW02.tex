@@ -47,6 +47,69 @@
   
 \end{Problem}
 
+First, consider the case \(n=1\).
+
+
+Without loss of generality, we may assume that
+\begin{equation}
+\int_{\mathbb{R}} f(x) \, dx = F > 0 \quad \text{and} \quad \int_{\mathbb{R}} g(x) \, dx = G > 0.
+\end{equation}
+Define $u, v : (0, 1) \rightarrow \mathbb{R}$ such that $u(t)$ and $v(t)$ are the smallest numbers satisfying
+\begin{equation}\label{eq.28}
+\frac{1}{F} \int_{-\infty}^{u(t)} f(x) \, dx = \frac{1}{G} \int_{-\infty}^{v(t)} g(x) \, dx = t.
+\end{equation}
+Then $u$ and $v$ may be discontinuous, but they are strictly increasing functions and so are differentiable almost everywhere. Let
+\begin{equation}
+w(t) = (1 - \lambda)u(t) + \lambda v(t).
+\end{equation}
+Take the derivative of \eqref{eq.28} with respect to $t$ to obtain
+\begin{equation}
+\frac{f(u(t)) u'(t)}{F} = \frac{g(v(t)) v'(t)}{G} = 1.
+\end{equation}
+
+Using this and the arithmetic-geometric mean inequality, we obtain (when $f'(u(t)) \neq 0$ and $g'(v(t)) \neq 0$)
+
+
+\begin{equation}
+\begin{aligned}
+w'(t) = (1 - \lambda)u'(t) + \lambda v'(t) &\geq \left(\frac{u'(t)}{1-\lambda}\right)^{1-\lambda} \left(\frac{v'(t)}{\lambda}\right)^\lambda\\
+ &= \left(\frac{F}{f'(u(t))}\right)^{1-\lambda} \left(\frac{G}{g'(v(t))}\right)^\lambda.
+\end{aligned}
+\end{equation}
+
+Therefore
+
+\begin{equation}
+  \begin{aligned}
+\int_{\mathbb{R}} h(x) \, dx &= \int_{0}^{1} h(w(t)) w'(t) \, dt \\
+&\geq \int_{0}^{1} \left(f'(u(t))\right)^{1-\lambda} \left(g'(v(t))\right)^\lambda \left(\frac{F}{f'(u(t))}\right)^{1-\lambda} \left(\frac{G}{g'(v(t))}\right)^\lambda \, dt \\
+&= F^{1-\lambda}G^\lambda.
+\end{aligned}
+\end{equation}  
+
+
+
+Next, we perform the induction on $n$. 
+
+Let's indicate the variables as $x = (x_1, x') \in \mathbb{R} \times \mathbb{R}^{n-1}$ and define the functions
+\begin{align*}
+F(x_1) &= \int_{\mathbb{R}^{n-1}} f(x_1, x') \, dx', \\
+G(y_1) &= \int_{\mathbb{R}^{n-1}} g(y_1, y') \, dy', 
+\\
+H(z_1) &= \int_{\mathbb{R}^{n-1}} f(z_1, z') \, dz'
+.
+\end{align*}
+Fix $x_1, y_1, z_1 \in \mathbb{R}$ such that $z_1 = (1 - \lambda)x_1 + \lambda y_1$. Then
+\[
+h(z_1, z') \geq f(x_1, x')^{1-\lambda} g(y_1, y')^\lambda
+\]
+for all $x', y', z' \in \mathbb{R}^{n-1}$ with $z' = (1-\lambda)x' + \lambda y'$. By induction, Prékopa-Leindler holds in dimension $n - 1$, thus it follows that
+\[
+H(z_1) \geq F(x_1)^{1-\lambda} G(y_1)^\lambda.
+\]
+So now we can apply again the 1-dimensional Prékopa-Leindler inequality to obtain the desired conclusion.
+
+
 
 \pagebreak
 \begin{Problem}[]{The Brunn-Minkowski Inequality}
@@ -58,5 +121,58 @@ $$
 
 \end{Problem}
 
+Let
+
+\begin{equation*}
+  \begin{aligned}
+    f(x) &= \Id_{A},\\
+    g(x) &= \Id_{B},\\
+    h(x) &= \Id_{(1-\lambda)A+\lambda B}.
+\end{aligned}
+\end{equation*}  
+
+Applying the Prékopa-Leindler Inequality, we have that 
+\begin{equation*}
+  |(1-\lambda)A+\lambda B| \geq {|A|}^{1-\lambda} |B|^{\lambda}.
+\end{equation*}
+
+Now show that this inequality (multiplicative BM) implies the additive version\(|A + B|^\frac{1}{n} \geq |A|^\frac{1}{n} + |B|^\frac{1}{n}\):
+
+We assume that both \(A, B\) have positive volume, as otherwise the inequality is trivial, and normalize them to have volume 1 by setting
+\[
+A' = \frac{A}{|A|^{1/n}}, \quad B' = \frac{B}{|B|^{1/n}}.
+\]
+We define \(\lambda'\) by
+\[
+\lambda'  = \frac{\lambda |B|^{1/n}}{(1-\lambda)|A|^{1/n} + \lambda |B|^{1/n}}, \quad 1 - \lambda' = \frac{(1-\lambda)|A|^{1/n}}{(1-\lambda)|A|^{1/n} + \lambda |B|^{1/n}}.
+\]
+With these definitions, and using that \(|A'| = |B'| = 1\), we calculate using the multiplicative Brunn--Minkowski inequality that:
+\[
+\left| \frac{(1 - \lambda) A + \lambda B}{(1 - \lambda)|A|^{1/n} + \lambda |B|^{1/n}} \right| = \left| (1 - \lambda') A' + \lambda' B' \right| \geq |A'|^{1-\lambda'} |B'|^{\lambda'} = 1.
+\]
+The additive form of Brunn--Minkowski now follows by pulling the scaling out of the leftmost volume calculation and rearranging:
+
+\[
+\left| (1 - \lambda) A + \lambda B\right| \geq  \left\{(1 - \lambda)|A|^{1/n} + \lambda |B|^{1/n}\right\}^n.
+\]
+
+\[
+{\left| (1 - \lambda) A + \lambda B \right|}^{1/n} \geq (1 - \lambda)|A|^{1/n} + \lambda |B|^{1/n}
+\]
+
+Set \(\lambda = 1/2\), 
+
+\begin{equation*}
+  \begin{aligned}
+    {\left| \frac{1}{2} A +  \frac{1}{2} B \right|}^{1/n}  
+    &= \frac{1}{2} {\left|  A + B \right|}^{1/n} 
+    \\
+    &\geq \frac{1}{2}|A|^{1/n} + \frac{1}{2} |B|^{1/n}
+  \end{aligned}
+\end{equation*}
+\(\implies\)
+$$
+|A + B|^\frac{1}{n} \geq |A|^\frac{1}{n} + |B|^\frac{1}{n}.
+$$
 
 \end{document}
