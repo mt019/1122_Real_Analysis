@@ -1,0 +1,216 @@
+\documentclass[UTF8,a4paper,10pt]{article}
+
+% \begin{equation*}
+%   \begin{aligned}
+%   \end{aligned}
+% \end{equation*}
+
+% \begin{mybox}{}
+% \end{mybox}
+
+
+% \begin{Problem}[]{}
+% \end{Problem}
+
+% \begin{solution}\,
+% \end{solution}
+  
+
+% \begin{enumerate}[label=(\alph*)]
+% \end{enumerate} 
+
+% \setcounter{section}{3} 
+% \setcounter{theorem}{3}
+
+% \begin{theorem}\label{thm:3.4}
+%   If $E = \bigsqcup_{k} E_k$ is a countable union of sets, then $|E|_e \leq \sum_{k} |E_k|_e$.
+%   \end{theorem}
+
+%  \footcite[][42]{Wheeden_Zygmund_2015}
+
+\input{preamble.tex}
+
+\begin{document}
+
+
+
+\begin{Problem}[]{}
+ Let $f : \mathbb{R} \rightarrow \mathbb{C}$. Prove that $f$ satisfies the Lipschitz condition
+  \[
+  |f(x) - f(y)| \leq M|x - y|
+  \]
+  for some $M > 0$ and for all $x, y \in \mathbb{R}$, if and only if $f$ satisfies the following two properties:
+  \begin{enumerate}
+      \item[(i)] $f$ is absolutely continuous.
+      \item[(ii)] $|f'(x)| \leq M$ for a.e. $x$
+  \end{enumerate}
+  
+\end{Problem}
+
+\(\Rightarrow \)
+
+Suppose \(f\) is Lipschitz continuous. For \(\epsilon > 0\), let \(\delta = \frac{\epsilon}{M}\), whenever \( \sum |b_i - a_i|< \delta\), we have
+
+\[\sum |f(b_i) - f(a_i)| \leq M \sum |b_i - a_i| < \epsilon,\]
+
+implying that \(f\) is absolutely continuous.
+
+By Theorem 7.27 and Corollary 7.23, we can see that \(f'\) exists (\(f\) is differentiable) almost everywhere.
+
+For \(x\) where \(f'(x)\) exists, the Lipschitz condition implies that, for all \(h\),
+
+\begin{equation*}
+  \begin{aligned}
+    \left| \frac{f(x+h) - f(x)}{h} \right| \leq M
+  \end{aligned}
+\end{equation*}
+
+Taking the limit as \(h\to 0\), we have
+
+\begin{equation*}
+  \begin{aligned}
+    \left|f'(x) \right|  = \lim_{h\to 0}\left| \frac{f(x+h) - f(x)}{h} \right| \leq M
+  \end{aligned}
+\end{equation*}
+
+\dotfill
+
+\(\Leftarrow \)
+
+Suppose that \(f\) is absolutely continuous. By Theorem 7.27 and Corollary 7.23, we have that \(f\) is of bounded variation and thus \(f'\) exists almost everywhere.
+
+By Theorem 7.29, for all \(x < y \in \mathbb{R} \),
+
+\[\left| f(x) - f(y) \right| = \left| \int_{x}^{y} f'(t) \, dt \right| \leq \int_{x}^{y} \left| f'(t) \right| \, dt \leq \int_{x}^{y}  M \, dt = M \left| x - y \right|.
+\]
+
+We can conclude that \( f \) is Lipschitz continuous.
+
+\begin{mybox}{Corollary 7.23}
+  If \( f \) is of bounded variation on \([a, b]\), then \( f' \) exists almost everywhere in \([a, b]\), and \( f' \in L[a, b] \).
+\end{mybox}
+
+\begin{mybox}{Theorem 7.27}
+
+  If \( f \) is absolutely continuous on \([a, b]\), then it is of bounded variation on \([a, b]\).
+
+\end{mybox}
+
+
+\begin{mybox}{Theorem 7.29}
+
+A function \( f \) is absolutely continuous on \([a, b]\) if and only if \( f' \) exists almost everywhere in \([a, b]\), \( f' \) is integrable on \([a, b]\), and for \( a \leq x \leq b \),
+\[
+f(x) - f(a) = \int_{a}^{x} f'(t) \, dt.
+\]
+\end{mybox}
+
+\pagebreak
+
+\begin{mybox}{}
+    
+  A function \( \phi \) is convex in \( (a, b) \) if and only if
+  \[
+    \phi(\theta x_1 + (1 - \theta) x_2) \leq \theta \phi(x_1) + (1 - \theta) \phi(x_2)
+    \]
+    for \( x_1 , x_2 \in (a,b)\) and \( 0 \leq \theta \leq 1 \). 
+    
+  \end{mybox}
+
+  \begin{mybox}{Theorem 7.40}
+
+
+ If \(\phi\) is convex in (a, b), then \(\phi\) is continuous in (a, b). Moreover,
+\(\phi\) exists except at most in a countable set and is monotone increasing.
+
+\end{mybox}
+
+\begin{Problem}[]{}
+  Prove that $f$ is convex on $(a, b)$ if and only if it is continuous and
+  \[
+  f\left(\frac{x + y}{2}\right) \leq \frac{f(x) + f(y)}{2}
+  \]
+  for all $x, y \in (a, b)$.
+  
+
+\end{Problem}
+
+\(\Rightarrow \)
+
+Suppose that \(f\) is convex. Following the definition of convexity, let \(\theta = \frac{1}{2}\), we have
+
+\[
+  f\left(\frac{x + y}{2}\right) \leq \frac{f(x) + f(y)}{2}
+  \]
+  for all $x, y \in (a, b)$.
+  
+By Theorem 7.40, \(f\) is continuous.
+
+\dotfill
+
+\(\Leftarrow \)
+
+% Suppose that \(f\) is continuous and the inequality holds.
+
+% Let a sequenence \(d_k = \frac{m}{2^n}\), where \(n \in\mathbb{N}\), and \(m = 0,1,\ldots,2^n\).
+
+% For all \(d_k\), we have 
+
+% \[
+%   f\left(d_k a + (1-d_k) b\right) 
+%    \leq d_k f(a) + (1-d_k) f(b)
+%   \]
+
+% For any \(\theta \in [0,1]\), we can find \(\lim_{k\to \infty}d_k = \theta\).
+
+
+
+
+
+% \dotfill
+
+Suppose that \( f \) is continuous and satisfies the midpoint inequality for all \( x, y \in (a, b) \).
+
+To prove convexity, consider any \( x, y \in (a, b) \) and any \( \theta \in [0, 1] \). We need to show that
+\[
+f(\theta x + (1-\theta) y) \leq \theta f(x) + (1-\theta) f(y).
+\]
+
+This can be proved using an induction approach on the dyadic rationals (i.e., numbers of the form \( \frac{m}{2^n} \), where \(n \in\mathbb{N}\), and \(m = 0,1,\ldots,2^n\)), then generalizing to all \( \theta \) using the continuity of \( f \).
+
+\textit{Base Case:} For \( n=1 \), the midpoint inequality ensures that the convexity condition holds for \( \theta = \frac{1}{2} \).
+
+% \textit{Inductive Step:} Assume the convexity condition holds for all dyadic rationals of the form \( \frac{m}{2^n} \) for some \( n \). Consider \( \theta = \frac{m}{2^{n+1}} \) or \( \theta = 1 - \frac{m}{2^{n+1}} \). Through a detailed calculation using the inductive hypothesis, this can be shown to satisfy the convexity condition.
+
+\textit{Inductive Step:} Assume the condition holds for \( n \). Consider \( \theta = \frac{m}{2^{n+1}} \).
+
+\textit{Case 1:} If \( m \) is even, \( \theta \) is a dyadic rational of the form \( \frac{k}{2^n} \), so the hypothesis applies.
+
+\textit{Case 2:} If \( m \) is odd, write \( \theta \) as
+\[
+\theta = \frac{1}{2} \left(\frac{(m-1)/2}{2^n}\right) + \frac{1}{2} \left(\frac{(m+1)/2}{2^n}\right),
+\]
+noting that \(\frac{m-1}{2}\) and \(\frac{m+1}{2}\) are integers.
+% both terms being dyadic rationals of order \( n \).
+
+Using the midpoint inequality:
+\[
+f\left(\theta x + (1-\theta) y\right) \leq \frac{1}{2} f\left(\frac{(m-1)/2}{2^n} x + \left(1 - \frac{(m-1)/2}{2^n}\right) y\right) + \frac{1}{2} f\left(\frac{(m+1)/2}{2^n} x + \left(1 - \frac{(m+1)/2}{2^n}\right) y\right).
+\]
+By applying the convexity condition assumed for \( \frac{(m-1)/2}{2^n} \) and \( \frac{(m+1)/2}{2^n} \):
+\begin{equation*}
+  \begin{aligned}
+f\left(\theta x + (1-\theta) y\right) &\leq \frac{1}{2} \left(\frac{(m-1)/2}{2^n} f(x) + \left(1 - \frac{(m-1)/2}{2^n}\right) f(y)\right) + \frac{1}{2} \left(\frac{(m+1)/2}{2^n} f(x) + \left(1 - \frac{(m+1)/2}{2^n}\right) f(y)\right) \\
+&= \theta f(x) + (1-\theta) f(y).
+\end{aligned}
+\end{equation*}
+
+Thus, the convexity condition is preserved for \( n+1 \).
+
+
+The continuity of \( f \) implies that since the inequality holds for all dyadic rationals, it also holds by the limit for any \( \theta \in [0, 1] \) as dyadic rationals are dense in \([0,1]\).
+
+Thus, \( f \) is convex on \((a, b)\).
+
+
+\end{document}
