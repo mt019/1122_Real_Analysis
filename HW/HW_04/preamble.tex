@@ -1,0 +1,208 @@
+% \documentclass[UTF8,a4paper,14pt]{article}
+% \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+% \usepackage{algorithm,algorithmic}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+% \usepackage{algorithmicx}
+% \usepackage{algpseudocode}
+\usepackage{hyperref}
+
+% \usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%for 字體
+%https://tug.org/FontCatalogue/
+% \usepackage[T1]{fontenc}
+% \usepackage{tgbonum}
+% \usepackage[bitstream-charter]{mathdesign}
+% \usepackage[T1]{fontenc}
+% \usepackage{bm}#粗體
+%\usepackage{boondox-calo}
+\usepackage{textcomp}
+\usepackage{fancyhdr}%导入fancyhdrf包
+\usepackage{ctex}%导入ctex包
+\usepackage{enumitem} %for在Latex使用條列式清單
+\usepackage{varwidth}
+\usepackage{soul} %for \ul
+\usepackage{comment}%\begin{comment}\end{comment}
+\usepackage{cancel}%\cancel{}
+%\usepackage{unicode-math}
+
+\usepackage[dvipsnames, svgnames, x_11names]{xcolor}
+
+\usepackage[low-sup]{subdepth}
+\usepackage{subdepth}
+
+\newcommand{\indep}{\Perp \!\!\! \Perp}
+
+\usepackage{amsthm}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\textbf{Var}}
+\DeclareMathOperator{\Cov}{\textbf{Cov}}
+\DeclareMathOperator{\Cor}{\textbf{Cor}}
+\DeclareMathOperator{\X}{\mathbf{X}}
+\DeclareMathOperator{\Pro}{\mathbf{P}}
+\DeclareMathOperator{\M}{\mathbf{M}}
+\DeclareMathOperator{\Id}{\mathbf{I}}
+\DeclareMathOperator{\Y}{\mathbf{Y}}
+\DeclareMathOperator{\MSFE}{\mathbf{MSFE}}
+\DeclareMathOperator{\e}{\mathbb{e}}
+\DeclareMathOperator{\V}{\mathbf{V}} 
+\DeclareMathOperator{\tr}{\text{tr}}
+\DeclareMathOperator{\A}{\textbf{A}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}} % inner command, used by \rchi
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareMathSizes{20}{10}{10}{5}
+
+\usepackage[a4paper, margin=1in]{geometry}
+% \setlength\parskip{5ex}% it would be better define distance in ex (5ex) 
+                         %  or in pt, pc, mm, etc (see edit below)
+
+\setlength{\parindent}{0pt}
+\usepackage{array, makecell} %
+
+
+%中英文設定
+%\usepackage{fontspec}
+% \setmainfont{TeX Gyre Termes}
+% \usepackage{xeCJK} %引用中文字的指令集
+% %\setCJKmainfont{PMingLiU}
+% \setCJKmainfont{DFKai-SB}
+
+
+
+
+
+% \setmainfont{Times New Roman}
+% \setCJKmonofont{DFKai-SB}
+\pagenumbering{arabic}%设置页码格式
+\pagestyle{fancy}
+\fancyhead{} % 初始化页眉
+\usepackage{advdate}
+
+% \newcommand{\yesterday}{{\AdvanceDate[-1]\today}}
+
+\fancyhead[C]{Real Analysis II \quad HW  04\quad  R10A21126\quad  WANG YIFAN\quad   \today}
+%\fancyhead[LE]{\textsl{\rightmark}}
+%\fancyfoot{} % 初始化页脚
+%\fancyfoot[LO]{奇数页左页脚}
+%\fancyfoot[LE]{偶数页左页脚}
+%\fancyfoot[RO]{奇数页右页脚}
+%\fancyfoot[RE]{偶数页右页脚}
+
+% \title{{Econometrics HW 05}}
+% \author{R10A21126}
+% \date{\today}
+
+%\fancyhf{}
+\usepackage{lastpage}
+\cfoot{Page \thepage \hspace{1pt} of\, \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.1pt}%分隔线宽度4磅
+%\renewcommand{\footrulewidth}{4pt}
+
+\allowdisplaybreaks
+\usepackage[english]{babel}
+%\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\usepackage[most]{tcolorbox}
+
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
+
+\newtcolorbox[auto counter]{mybox}[1]{
+  % Define a new tcolorbox style with custom paragraph spacing
+  before upper={\parskip=10pt},
+    after upper={\parskip=10pt},
+    enhanced,
+    arc= 1 mm,boxrule=1.5pt,
+    colframe=babyblue!80!pink,
+    colback=white,
+    coltitle=black,
+    % colback=blue!5!white,
+    attach boxed title to top left=
+    {xshift=1.5em,yshift=-\tcboxedtitleheight/2},
+    boxed title style={size=small,
+    % frame hidden,
+    colback=White},
+    top=0.15in,
+    % fonttitle=\bfseries,
+    title= {#1},
+    breakable
+  }
+
+\newtcolorbox[auto counter]{Problem}[2][]{
+    enhanced,drop shadow={Pink!50!white},
+    colframe=pink!80!white,
+    fonttitle=\bfseries,
+    title=Problem ~\thetcbcounter. #2,
+    %separator sign={.},
+    coltitle=black,
+    colback=pink!15,
+    top=0.15in,
+    breakable
+  }
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+  {\end{proof}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+%\theoremstyle{notation}
+\newtheorem*{notation}{\underline{Notation}}
+%\newtheorem*{convention}{\underline{Convention}}
+\newtheorem*{convention}{\underline{Convention}}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newenvironment{amatrix}[2]{%% [2] for 2 parameters 
+  \left[\begin{array}
+    %{cc\,|\,cc}
+    %  {@{}*{#2}{c}\,|\,c*{#1}{c}}
+     {{}*{#1}{c}\,|\,c*{#2}{c}}
+}{%
+  \end{array}\right]
+}
+% For augmented matrix  
+%https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
+
+
+% defines the paragraph spacing
+\setlength{\parskip}{0.5em}
+
+
+\usepackage[sorting=none, citestyle=verbose-inote,backref=true,ibidtracker=context,mincrossrefs=99,backend=biber, 
+url = false,
+doi = false, isbn=false,]{biblatex}
+
+\addbibresource{R10A21126.bib}
+
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{caption}
+
+% global change
+\SetKwInput{KwData}{Input}
+\SetKwInput{KwResult}{Output}
+% https://tex.stackexchange.com/questions/299771/how-do-i-rename-data-from-kwdata-and-result-from-kwresult-in-begi
+
+\hypersetup{hidelinks}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+% https://tex.stackexchange.com/questions/22798/nice-looking-empty-set
+
+
+\usepackage{pgfplots}

@@ -1,0 +1,385 @@
+\documentclass[UTF8,a4paper,10pt]{article}
+
+% \begin{equation*}
+%   \begin{aligned}
+%   \end{aligned}
+% \end{equation*}
+
+% \begin{mybox}{}
+% \end{mybox}
+
+
+% \begin{Problem}[]{}
+% \end{Problem}
+
+% \begin{solution}\,
+% \end{solution}
+  
+
+% \begin{enumerate}[label=(\alph*)]
+% \end{enumerate} 
+
+% \setcounter{section}{3} 
+% \setcounter{theorem}{3}
+
+% \begin{theorem}\label{thm:3.4}
+%   If $E = \bigsqcup_{k} E_k$ is a countable union of sets, then $|E|_e \leq \sum_{k} |E_k|_e$.
+%   \end{theorem}
+
+%  \footcite[][42]{Wheeden_Zygmund_2015}
+
+\input{preamble.tex}
+
+\begin{document}
+
+
+\begin{mybox}{H\"older's Inequality}
+
+    \textit{If $1 \leq p \leq \infty$ and $\frac{1}{p} + \frac{1}{p'} = 1$, then $\|fg\|_1 \leq \|f\|_p \|g\|_{p'}$; that is,}
+
+    \begin{equation*}
+        \begin{aligned}
+          \int_E |fg| &\leq \left( \int_E |f|^p \right)^{1/p} \left( \int_E |g|^{p'} \right)^{1/p'}, \quad 1 < p < \infty; \\
+          \int_E |fg| &\leq \left( \text{ess sup}_E |f| \right) \int_E |g|.
+        \end{aligned}
+      \end{equation*} 
+      
+    
+
+\end{mybox}
+
+
+\begin{equation*}
+    \begin{aligned}
+        \|fg\|_r &= \left( \int |fg|^r \right)^{1/r}\\
+        \|f g\|_r^r &= \left( \int |fg|^r \right)^{1} = \|f^r g^r\|_1
+    \end{aligned}
+  \end{equation*}        
+
+
+\begin{Problem}[]{}
+    \begin{itemize}
+        \item[(a)] Let $1 \leq p_i, r \leq \infty$ and $\frac{1}{p_1} + \cdots + \frac{1}{p_k} = \frac{1}{r}$. Prove the following generalization of Hölder’s inequality:
+        \[
+        \| f_1 \cdot f_2 \cdots f_k \|_r \leq \| f_1 \|_{p_1} \cdot \| f_2 \|_{p_2} \cdots \| f_k \|_{p_k}
+        \]
+        \item[(b)] Let $1 \leq p < r < q \leq \infty$ and define $\theta \in (0, 1)$ by
+        \[
+        \frac{1}{r} = \frac{\theta}{p} + \frac{1 - \theta}{q}
+        \]
+        Prove the interpolation estimate:
+        \[
+        \| f \|_r \leq \| f \|_p^\theta \| f \|_q^{1-\theta}
+        \]
+    \end{itemize}
+    
+
+\end{Problem}
+
+
+
+\begin{solution}\,
+
+    \subsection*{(a) Generalization of Hölder's Inequality}
+
+
+    We prove this by induction. 
+    
+    The \( k = 2 \) case is a consequence of H\"older's inequality:
+
+    If \( \frac{1}{p_1} + \frac{1}{p_2} = \frac{1}{r} \), then \( \frac{r}{p_1} + \frac{r}{p_2} = 1 \), so
+\begin{equation*}
+  \begin{aligned}
+    \|fg\|_r^r &= \|f^r g^r\|_1 \leq \|f^r\|_{p_1/r} \|g^r\|_{p_2/r} = \|f\|_{p_1}^r \|g\|_{p_2}^r.
+  \end{aligned}
+\end{equation*}
+
+It is implied that
+\begin{equation*}
+    \begin{aligned}
+      \|fg\|_r &\leq \|f\|_{p_1}\|g\|_{p_2}.
+    \end{aligned}
+  \end{equation*}
+
+Now if \( \frac{1}{p_1} + \cdots + \frac{1}{p_k} = \frac{1}{r} \) for \( k > 2 \), we have
+\begin{equation*}
+  \begin{aligned}
+    \|f_1 \cdots f_k\|_r &\leq \|f_1 \cdots f_{k-1}\|_s \|f_k\|_{p_k} \\
+    &\leq \|f_1\|_{p_1} \cdots \|f_k\|_{p_k},
+  \end{aligned}
+\end{equation*}
+where \( \frac{1}{s} = \frac{1}{r} - \frac{1}{p_k} = \frac{1}{p_1} + \cdots + \frac{1}{p_{k-1}} \).
+
+\subsection*{(b) Interpolation Estimate}
+
+
+Let $1 \leq p < r < q \leq \infty$ and define $\theta \in (0, 1)$ by
+        \[
+        \frac{1}{r} = \frac{\theta}{p} + \frac{1 - \theta}{q}
+        \]
+
+
+
+
+In other words, \(1/r\) is the convex interpolation between \(1/p\) and \(1/q\). 
+
+\begin{equation*}
+  \begin{aligned}
+    \frac{1}{r} &= \frac{\theta}{p} + \frac{1 - \theta}{q}\\
+    \frac{1}{r} &= \frac{1}{p/\theta} + \frac{1}{q/(1 - \theta)}
+  \end{aligned}
+\end{equation*}
+
+Apply the Hölder’s Inequality,
+
+\begin{equation*}
+  \begin{aligned}
+    \| f \|_r &= \| f^{\theta} f^{1-\theta} \|_r \\ \text{(Apply the Hölder’s Inequality)}\quad
+    &\leq \| f^\theta \|_{p/\theta} \| f1-\theta \|_{q/(1-\theta)}\\
+     &=\| f \|_p^\theta \| f \|_q^{1-\theta}
+  \end{aligned}.
+\end{equation*}
+
+The last equation is due to
+
+\begin{equation*}
+  \begin{aligned}
+    \| f^{\theta} \|_{p/\theta} =  \left( \int |f^{\theta}|^{p/\theta} \right)^{\theta/p} = \left( \int |f|^{p} \right)^{\theta/p} = \| f \|_{p}^{\theta}
+  \end{aligned}
+\end{equation*}
+
+
+  
+\end{solution}
+
+
+
+\begin{mybox}{}
+  Lemma. (used in the proof of Problem 2)
+  
+   For \(a, b \in \mathbb{R}\), \(|a + b|^p \leq 2^p(|a|^p + |b|^p)\), where \(0 < p < \infty\).
+  
+  Proof.
+  \begin{equation*}
+  \begin{aligned}
+  |a + b|^p &\leq (|a| + |b|)^p \\
+  &\leq (2 \max\{|a|, |b|\})^p \\
+  &= 2^p (\max\{|a|, |b|\})^p \\
+  &\leq 2^p (|a|^p + |b|^p).
+  \end{aligned}
+  \end{equation*}
+  
+  \end{mybox}
+
+\pagebreak
+
+
+\begin{Problem}[]{}
+
+    Let $f \in L^p(\mathbb{R}^n)$, where $0 < p < \infty$. Show that
+\[
+\lim_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p \, dy = 0 \quad \text{a.e.}
+\]
+
+\end{Problem}
+
+
+
+
+Let \(\{r_k\}\) be the rational numbers. First note that for any \(Q, x,\) and \(r_k\),
+
+\begin{equation*}
+  \begin{aligned}
+   |f(y) - f(x)|^p \leq  |f(y) - r_k|^p +|r_k - f(x)|^p 
+  \end{aligned}
+  \end{equation*}
+  
+\begin{equation*}
+\begin{aligned}
+\frac{1}{|Q|} \int_Q |f(y) - f(x)|^p dy &\leq 2^p \frac{1}{|Q|} \int_Q |f(y) - r_k|^p dy + 2^p \frac{1}{|Q|} \int_Q |r_k - f(x)|^p dy \\
+&= 2^p \frac{1}{|Q|} \int_Q |f(y) - r_k|^p dy + 2^p |r_k - f(x)|^p.
+\end{aligned}
+\end{equation*}
+
+For every \(r_k\), let \(Z_k\) be the set in which the formula
+
+\begin{equation*}
+\lim_{Q \searrow  x} \frac{1}{|Q|} \int_Q |f(y) - r_k|^p dy = |f(x) - r_k|^p
+\end{equation*}
+
+is not valid. 
+
+Since
+\begin{equation*}
+|f(y) - r_k|^p \leq 2^p (|f(y)|^p + |r_k|^p)
+\end{equation*}
+
+is locally integrable, by Lebesgue's Differentiation Theorem, \(|Z_k| = 0\). Let \(Z = \bigcup Z_k\), then \(|Z| = 0\).
+
+Thus, if \(x \notin Z\), for every \(r_k\),
+
+\begin{equation*}
+  \begin{aligned}
+\limsup_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p dy &\leq 2^p |f(x) - r_k|^p + | r_k - f(x)|^p
+\\
+& = 2^{p+1} |f(x) - r_k|^p.
+\end{aligned}
+\end{equation*}
+
+For an \(x\) at which \(f(x)\) is finite (in particular, almost everywhere since \(f \in L^p(\mathbb{R}^n)\)), by the density of rationals in \(\mathbb{R}^n\) we can choose \(r_k\) such that \(|f(x) - r_k|^p\) is arbitrarily small.
+
+Thus
+\begin{equation*}
+\limsup_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p dy = 0 \quad \text{a.e.}
+\end{equation*}
+
+and this completes the proof. Since 
+
+\[\liminf_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p dy 
+\leq \limsup_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p dy = 0 \quad \text{a.e.}
+\]
+
+
+
+
+
+% Let $f \in L^p(\mathbb{R}^n)$, where $0 < p < \infty$. We aim to show that
+% \[
+% \lim_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p \, dy = 0 \quad \text{almost everywhere}.
+% \]
+
+% Here, $Q \searrow x$ means that $Q$ is a sequence of cubes shrinking to the point $x$.
+
+% First, recall that since $f \in L^p(\mathbb{R}^n)$, $f$ is locally integrable. For almost every point $x \in \mathbb{R}^n$, the Lebesgue differentiation theorem states that
+% \[
+% \lim_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)| \, dy = 0.
+% \]
+
+% To prove the desired result, we need to generalize this to the $L^p$ norm. Consider the following steps:
+
+% \begin{equation*}
+% \begin{aligned}
+%    &1. \text{Apply Hölder's Inequality:} \\
+%    &\left( \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p \, dy \right)^{\frac{1}{p}} \leq \left( \frac{1}{|Q|} \int_Q |f(y) - f(x)| \, dy \right)^{\frac{1}{p}}.
+% \end{aligned}
+% \end{equation*}
+
+% \begin{equation*}
+% \begin{aligned}
+%    &2. \text{Use the Lebesgue Differentiation Theorem:} \\
+%    &\lim_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)| \, dy = 0 \quad \text{for almost every } x \in \mathbb{R}^n.
+% \end{aligned}
+% \end{equation*}
+
+% \begin{equation*}
+% \begin{aligned}
+%    &3. \text{Combine the Results:} \\
+%    &\lim_{Q \searrow x} \left( \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p \, dy \right)^{\frac{1}{p}} = 0.
+% \end{aligned}
+% \end{equation*}
+
+% \begin{equation*}
+% \begin{aligned}
+%    &4. \text{Raise to the Power of } p: \\
+%    &\lim_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p \, dy = 0.
+% \end{aligned}
+% \end{equation*}
+
+% Thus, we have shown that
+% \[
+% \lim_{Q \searrow x} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p \, dy = 0 \quad \text{almost everywhere}.
+% \]
+
+
+\pagebreak
+
+\begin{Problem}[]{}
+
+    Show that every subset \(\Lambda\) of a separable metric space \((M, d)\) is separable.
+
+\end{Problem}
+
+
+\begin{mybox}{separable}
+
+
+
+\textbf{Def.} A \emph{metric space} \((X, d)\) is said to be \textbf{separable} if there exists a countable subset \(A \subseteq X\) that is dense in \(X\), i.e., \(\overline{A} = X\). 
+
+That is, \((X, d)\) is \textbf{separable} if and only if there exists a countable subset \(A \subseteq X\) such that for  every \(x \in X\) and every \(\epsilon > 0\), there exists \(a \in A\) with \(d(x, a) < \epsilon\).
+
+\end{mybox}
+
+
+%  Let \( D = \{f_k\} \) be a countable dense set in \( M \).
+
+
+%  i.e., 
+%  \(\forall  \lambda\in\Lambda, \forall n\geq 1,\)
+%  \(\exists f_k\in D\), s.t. \(d(\lambda, f_k )< 1/n\).
+ 
+%  For \( n\geq 1 \), define \( D_n = \{ f \in D : \inf_{\lambda \in \Lambda} d(\lambda, f) < 1/n \} \). 
+ 
+%  If \( f_k \in D_n \), pick \( \lambda_{k,n} \in \Lambda \) with \( d(\lambda_{k,n}, f_k) < 1/n \).
+ 
+%  Claim: The subset \( \{\lambda_{k,n}\} \) is dense in \( \Lambda \).
+
+%  ---
+
+%  proof of Claim:
+
+%  \(\forall  \lambda\in\Lambda, \forall n\geq 1, \exists \lambda_{k,n}\), s.t. 
+
+
+% \begin{equation*}
+% \begin{aligned}
+% d(\lambda,\lambda_{k,n}) &\leq d(\lambda,f_k) + d(f_k,\lambda_{k,n})\\
+% & 1/n +1/n.
+% \end{aligned}
+% \end{equation*}
+
+% That is, \(d(\lambda,\lambda_{k,n})\to 0\), as \(n\to\infty\).
+
+% This implies that  \( \{\lambda_{k,n}\} \) is dense in \(\Lambda\).
+
+
+
+
+
+
+
+Let \( D = \{f_k\} \) be a countable dense set in \( M \).
+
+i.e., 
+\[
+\forall \lambda \in \Lambda, \forall n \geq 1, \exists f_k \in D \text{ such that } d(\lambda, f_k) < \frac{1}{n}.
+\]
+
+For \( n \geq 1 \), define 
+\[
+D_n = \{ f \in D : \inf_{\lambda \in \Lambda} d(\lambda, f) < \frac{1}{n} \}.
+\]
+
+If \( f_k \in D_n \), pick \( \lambda_{k,n} \in \Lambda \) with 
+\[
+d(\lambda_{k,n}, f_k) < \frac{1}{n}.
+\]
+
+\begin{claim}[]{}
+The subset \( \{\lambda_{k,n}\} \) is dense in \( \Lambda \).
+\end{claim}
+
+\begin{proof}
+Consider any \( \lambda \in \Lambda \) and any \( n \geq 1 \). There exists \( \lambda_{k,n} \) such that
+\[
+d(\lambda, \lambda_{k,n}) \leq d(\lambda, f_k) + d(f_k, \lambda_{k,n}) = \frac{1}{n} + \frac{1}{n}.
+\]
+This simplifies to 
+\[
+d(\lambda, \lambda_{k,n}) \to 0 \text{ as } n \to \infty.
+\]
+This implies that every point in \( \Lambda \) can be approximated arbitrarily closely by elements of \( \{\lambda_{k,n}\} \), thereby proving that \( \{\lambda_{k,n}\} \) is dense in \( \Lambda \), which establishes the claim.
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,221 @@
+\documentclass[UTF8,a4paper,10pt]{article}
+
+% \begin{equation*}
+%   \begin{aligned}
+%   \end{aligned}
+% \end{equation*}
+
+% \begin{mybox}{}
+% \end{mybox}
+
+
+% \begin{Problem}[]{}
+% \end{Problem}
+
+% \begin{solution}\,
+% \end{solution}
+  
+
+% \begin{enumerate}[label=(\alph*)]
+% \end{enumerate} 
+
+% \setcounter{section}{3} 
+% \setcounter{theorem}{3}
+
+% \begin{theorem}\label{thm:3.4}
+%   If $E = \bigsqcup_{k} E_k$ is a countable union of sets, then $|E|_e \leq \sum_{k} |E_k|_e$.
+%   \end{theorem}
+
+%  \footcite[][42]{Wheeden_Zygmund_2015}
+
+\input{preamble.tex}
+
+\begin{document}
+
+
+
+\begin{Problem}[]{}
+  Prove that \( L^\infty(E) \) is not separable for any \( E \) with \( |E| > 0 \).
+
+
+\end{Problem}
+
+
+\begin{solution}\,
+
+Take $E = [0,1]$ for example. 
+
+Suppose $L^\infty(E)$ is separable. 
+
+Then there exists a dense subset $A$ consisting of countable elements, i.e., $A \subset L^\infty(E)$.
+
+Define $f_\alpha = \rchi_{[0,\alpha]}$ for $\alpha \in [0,1]$, where $\rchi_{[0,\alpha]}$ is the indicator function for the interval $[0,\alpha]$. 
+
+If $\alpha \neq \beta$, then $\|f_\alpha - f_\beta\|_\infty = 1$. 
+
+Since $A$ is dense, for every $\alpha \in [0,1]$, and for every $\epsilon > 0$,
+
+there exists $g_\alpha \in A$ such that 
+
+% $$\|g_\alpha - f_\alpha\|_\infty < \frac{\epsilon}{4},$$ 
+$$\|g_\alpha - f_\alpha\|_\infty < \epsilon.$$ 
+
+
+
+By density, for $\beta \neq \alpha$, there is also $g_\beta \in A$ such that 
+
+$$\|g_\beta - f_\beta\|_\infty < \epsilon.$$ 
+% $$\|g_\beta - f_\beta\|_\infty \leq \frac{\epsilon}{4}.$$ 
+
+Using the triangle inequality, we get
+\[
+\|f_\alpha - f_\beta\|_\infty \leq \|f_\alpha - g_\alpha\|_\infty + \|g_\alpha - g_\beta\|_\infty + \|g_\beta - f_\beta\|_\infty
+\]
+Rearranging, we have
+
+\begin{equation*}
+  \begin{aligned}
+    \|g_\alpha - g_\beta\|_\infty &\geq \|f_\alpha - f_\beta\|_\infty - \|f_\alpha - g_\alpha\|_\infty - \|f_\beta - g_\beta\|_\infty\\
+    &> 1 - \epsilon - \epsilon = 1 - 2\epsilon
+  \end{aligned}
+\end{equation*}
+
+Since $\epsilon$ can be arbitrarily small, set $\epsilon = \frac{1}{4}$. 
+
+This implies $\|g_\alpha - g_\beta\|_\infty > \frac{1}{2}$. Therefore, $g_\alpha \neq g_\beta$ if $\alpha \neq \beta$.
+
+This implies that the function mapping $\alpha \mapsto g_\alpha$ from $[0,1]$ to $A$ is injective, i.e., "one-one." 
+
+Since $[0,1]$ is uncountably infinite, this implies that $A$ is also uncountably infinite. 
+
+However, $A$ is assumed to be a countable subset of $L^\infty[0,1]$. 
+
+The existence of an uncountable subset $\{g_\alpha \mid \alpha \in [0,1]\}$ within $A$ contradicts the countability of $A$.
+
+Therefore, $L^\infty(E)$ is not separable.
+
+\end{solution}
+
+
+\pagebreak
+
+\begin{Problem}[]{}
+  Let \( 1 \leq p < \infty \) and \( f \in L^p(\mathbb{R}^n) \). Show that the function \( g \) defined by
+  \[
+  g_f(h) = \|f(x + h) - f(x)\|_p
+  \]
+  is a uniformly continuous function on \(\mathbb{R}^n\). Is the same statement true when \( 0 < p < 1 \)?
+  
+
+\end{Problem}
+
+
+The statement only holds for \(1 \leq p < \infty\).
+
+\textbf{Theorem:} Continuous functions with compact support are dense in \(L^p\)
+
+Let \(f \in L^p(\mathbb{R}^n)\). For every \(\epsilon > 0\), there exists a function \(k\) that is continuous with compact support such that:
+\[
+\|f - k\|_p < \epsilon.
+\]
+
+
+% \textbf{Using:} Continuous functions with compact support are dense in \(L^p\)
+
+% % , which implies the function is uniformly continuous.
+
+% Let \( f \in L^p(\mathbb{R}^n) \). Let \(k\) be the function that is continuous with compact support \(E\). For every \(\epsilon > 0\), there exists \(k\) such that:
+% \[
+% \|f(x) - k(x)\|_p < \epsilon.
+% \]
+
+% \textbf{Claim (Fact, not used):} The function defined as
+% \begin{equation*}
+%   \begin{aligned}
+%     g_k(h) &= \|k(x+h) - k(x)\|_p
+%   \end{aligned}
+% \end{equation*}
+% is uniformly continuous. This is just a fact, not used in this argument.
+
+\dotfill
+
+\textbf{We want to show \(g_f(h)\) is uniformly continuous:} i.e. For every \(\epsilon > 0\), there exists \(\delta\) such that:
+\begin{equation*}
+  \begin{aligned}
+    |g_f(h_1) - g_f(h_2)| &< \epsilon, \quad \text{whenever } |h_1 - h_2| < \delta.
+  \end{aligned}
+\end{equation*}
+
+We know that:
+\begin{equation*}
+  \begin{aligned}
+    |g_f(h_1) - g_f(h_2)|   &:= |\|f(x+h_1) - f(x)\|_p - \|f(x+h_2) - f(x)\|_p| \\
+    \text{(By Reverse Triangle Inequality) }& \leq \|f(x+h_1) - f(x+h_2)\|_p \\
+    \text{(By Minkowski's Inequality) }&\leq \|f(x+h_1) - k(x+h_1)\|_p + \|k(x+h_1) - k(x+h_2)\|_p \\
+    &\quad + \|f(x+h_2) - k(x+h_2)\|_p,
+  \end{aligned}
+\end{equation*}
+where \(\forall \epsilon>0:\)
+
+\begin{enumerate}
+  \item 
+  \begin{equation*}
+  \begin{aligned}
+    &\|f(x+h_1) - k(x+h_1)\|_p < \epsilon, \\
+    &\|f(x+h_2) - k(x+h_2)\|_p < \epsilon,
+  \end{aligned}
+\end{equation*}
+by the existence of a continuous function \(k\) with compact support dense in \(L^p\);
+
+\item 
+\begin{equation*}
+  \begin{aligned}
+    &\|k(x+h_1) - k(x+h_2)\|_p < \epsilon, \\
+  \end{aligned}
+\end{equation*}
+\text{since \(k\) is uniformly continuous with compact support \(E\)}.
+% \begin{equation*}
+%   \begin{aligned}
+%     \|k(x+h_1) - k(x+h_2)\|_p &= \left( \int_E |k(x+h_1) - k(x+h_2)|^p \, dx \right)^{1/p} \\
+%     &< \left( \epsilon^p |E| \right)^{1/p} \\
+%     &= \epsilon',
+%   \end{aligned}
+% \end{equation*}
+% where \(|E| < \infty\).
+
+\end{enumerate} 
+  
+% Thus,
+
+Thus, the estimations above lead to:
+\begin{equation*}
+  \begin{aligned}
+    \|f(x+h_1) - f(x+h_2)\|_p &\leq \|f(x+h_1) - k(x+h_1)\|_p + \|k(x+h_1) - k(x+h_2)\|_p \\
+    &\quad + \|f(x+h_2) - k(x+h_2)\|_p \\
+    &< \epsilon + \epsilon + \epsilon = 3\epsilon.
+  \end{aligned}
+\end{equation*}
+
+Therefore, choosing \(\delta\) small enough to ensure the inequality above, whenever \(|h_1 - h_2| < \delta\), guarantees that:
+
+\begin{equation*}
+  \begin{aligned}
+    |g_f(h_1) - g_f(h_2)| &< 3\epsilon.
+  \end{aligned}
+\end{equation*}
+
+Hence, we have shown that \( g_f(h) \) is uniformly continuous. This confirms that any \( L^p \) function with \( 1 \leq p < \infty \) behaves such that the mapping \( h \mapsto \|f(x+h) - f(x)\|_p \) is uniformly continuous on \( \mathbb{R}^n \).
+
+\textbf{For \(0 < p < 1\):} 
+
+Minkowski's inequality fails for \(0 < p < 1\). 
+
+To see this, take \(E = (0, 1)\), \(f = \chi_{(0, \frac{1}{2})}\), and \(g = \chi_{(\frac{1}{2}, 1)}\). 
+
+Then \(\|f+g\|_p = 1\), while \(\|f\|_p + \|g\|_p = 2^{-\frac{1}{p}} + 2^{-\frac{1}{p}} = 2 \cdot 2^{-\frac{1}{p}} = 2^{1-\frac{1}{p}} < 1\).
+
+This demonstrates that the statement does not hold for \(0 < p < 1\).
+% The behavior of \( L^p \) spaces when \( p < 1 \) differs significantly as these spaces do not form a normed space, and the usual properties like the triangle inequality (and hence, Minkowski's inequality) do not hold. Without these fundamental properties, demonstrating uniform continuity in this manner is not feasible, implying the uniform continuity of \( g_f(h) \) may not hold when \( p < 1 \).
+
+
+\end{document}
